@@ -199,7 +199,7 @@ function renderResult() {
       ${(spreadA != null || total != null) ? `
       <div class="beta-box">
         <div class="beta-box-header">
-          <strong>BETA</strong> &mdash; Spread &amp; Total predictions are <b>experimental features</b> being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
+          <strong>BETA</strong> &mdash; Spread &amp; Total predictions are <b>EXPERIMENTAL FEATURES</b> being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
         </div>
         <div class="beta-box-values">
           ${spreadA != null ? `
