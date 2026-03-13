@@ -197,20 +197,20 @@ function renderResult() {
         </div>
       </div>
       ${(spreadA != null || total != null) ? `
-      <div class="result-extras-wrapper">
-        <div class="disclaimer">
-          <strong>BETA</strong> &mdash; Spread &amp; total predictions are experimental features being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
+      <div class="beta-box">
+        <div class="beta-box-header">
+          <strong>BETA</strong> &mdash; Spread &amp; Total predictions are <b>experimental features</b> being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
         </div>
-        <div class="result-extras">
+        <div class="beta-box-values">
           ${spreadA != null ? `
-          <div class="result-extra">
-            <span class="result-extra-label">Predicted Spread</span>
-            <span class="result-extra-value">${winnerIsA ? selectedA.name : selectedB.name} by ${Math.abs(spreadA).toFixed(1)}</span>
+          <div class="beta-stat">
+            <span class="beta-stat-label">Predicted Spread</span>
+            <span class="beta-stat-value">${winnerIsA ? selectedA.name : selectedB.name} by ${Math.abs(spreadA).toFixed(1)}</span>
           </div>` : ''}
           ${total != null ? `
-          <div class="result-extra">
-            <span class="result-extra-label">Predicted Total</span>
-            <span class="result-extra-value">${total.toFixed(1)}</span>
+          <div class="beta-stat">
+            <span class="beta-stat-label">Predicted Total</span>
+            <span class="beta-stat-value">${total.toFixed(1)}</span>
           </div>` : ''}
         </div>
       </div>` : ''}

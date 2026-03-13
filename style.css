@@ -237,35 +237,33 @@ body {
   transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.result-extras {
-  display: flex; justify-content: center; gap: 40px;
-  padding: 16px 28px 24px; border-top: 1px solid var(--border);
+/* ─── Beta Box (spread & total inside orange panel) ─────────────────────── */
+.beta-box {
+  margin: 0; border-top: 1px solid var(--border);
+  background: var(--orange-pale);
+  padding: 16px 24px 20px;
+  text-align: center;
 }
-.result-extra { text-align: center; }
-.result-extra-label {
-  display: block; font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--text-faint); margin-bottom: 4px;
+.beta-box-header {
+  font-size: 12px; line-height: 1.6; color: var(--text-dim);
+  margin-bottom: 14px;
 }
-.result-extra-value {
-  font-size: 16px; font-weight: 700; color: var(--text);
-}
-.result-extras-wrapper {
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-}
-.result-extras-wrapper .disclaimer {
-  margin: 0; width: 100%;
-}
-.disclaimer {
-  max-width: 620px; margin: 0 auto; padding: 12px 20px;
-  background: var(--orange-pale); border: 1px solid #FDBA74;
-  border-radius: var(--radius-sm);
-  font-size: 12px; line-height: 1.6; color: var(--text-dim); text-align: center;
-}
-.disclaimer strong {
+.beta-box-header strong {
   display: inline-block; padding: 1px 7px; margin-right: 4px;
   background: var(--orange); color: white; border-radius: 4px;
   font-size: 10px; letter-spacing: 1px; vertical-align: 1px;
+}
+.beta-box-values {
+  display: flex; justify-content: center; gap: 40px;
+}
+.beta-stat { text-align: center; }
+.beta-stat-label {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 4px;
+}
+.beta-stat-value {
+  font-size: 16px; font-weight: 700; color: var(--text);
 }
 
 /* ─── Bracket Page ───────────────────────────────────────────────────────── */
@@ -452,9 +450,9 @@ body {
     text-overflow: ellipsis; white-space: nowrap;
   }
 
-  /* Extras */
-  .result-extras { gap: 16px; padding: 14px 12px 20px; flex-direction: column; align-items: center; }
-  .result-extras-wrapper { gap: 10px; }
-  .result-extra-value { font-size: 14px; word-break: break-word; }
-  .disclaimer { font-size: 11px; padding: 10px 14px; }
+  /* Beta box */
+  .beta-box { padding: 14px 14px 18px; }
+  .beta-box-header { font-size: 11px; margin-bottom: 12px; }
+  .beta-box-values { flex-direction: column; gap: 12px; }
+  .beta-stat-value { font-size: 14px; word-break: break-word; }
 }
