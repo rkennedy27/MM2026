@@ -403,7 +403,54 @@ body {
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .header-inner { flex-direction: column; height: auto; padding: 12px 16px; gap: 8px; }
-  .matchup-arena { gap: 10px; }
-  .team-selector { min-width: 240px; }
+  /* Header */
+  .header-inner { flex-direction: column; height: auto; padding: 10px 16px; gap: 8px; }
+  .logo-title { font-size: 14px; }
+  .tabs { width: 100%; justify-content: center; }
+  .tab { flex: 1; justify-content: center; padding: 7px 10px; font-size: 12px; }
+
+  /* Hero */
+  .matchup-hero { padding: 32px 16px 24px; }
+  .hero-title { font-size: 42px; letter-spacing: -2px; }
+  .hero-sub { font-size: 14px; }
+
+  /* Matchup arena — stack vertically */
+  .matchup-arena {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 16px 24px;
+    gap: 0;
+  }
+  .team-selector { min-width: unset; max-width: unset; width: 100%; }
+
+  /* VS column — go horizontal between the two selectors */
+  .vs-column {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    gap: 16px;
+  }
+
+  /* Result card */
+  .result-card { padding: 0 12px; margin-bottom: 48px; }
+
+  /* Stack the two teams on top of each other */
+  .result-teams { flex-direction: column; }
+  .result-divider { width: 100%; height: 1px; }
+  .result-team { padding: 24px 20px; }
+  .result-team-prob { font-size: 48px; }
+  .result-team-name { font-size: 18px; }
+
+  /* Bar labels — truncate long names */
+  .result-bar-wrap { padding: 0 16px 20px; }
+  .result-bar-labels span {
+    max-width: 45%; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* Extras */
+  .result-extras { gap: 24px; padding: 14px 16px 20px; }
+  .result-extras-wrapper { gap: 10px; }
+  .disclaimer { font-size: 11px; padding: 10px 14px; }
 }
