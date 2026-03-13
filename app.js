@@ -147,14 +147,21 @@ function renderResult() {
   const key = `${loId}_${hiId}`;
   const entry = matchups[key];
 
-  // MATCHUPS_DATA: either {p, s, t} object or legacy plain float
+  // MATCHUPS_DATA: [pred, spread, total] or legacy plain float
   let probA, spreadA = null, total = null;
   if (entry != null) {
-    if (typeof entry === 'object') {
+    if (Array.isArray(entry)) {
+      const pLo = entry[0];
+      probA = selectedA.id === loId ? pLo : 1 - pLo;
+      if (entry[1] != null) {
+        // spread is from loId perspective; flip if selectedA is hiId
+        spreadA = selectedA.id === loId ? entry[1] : -entry[1];
+      }
+      total = entry[2] ?? null;
+    } else if (typeof entry === 'object') {
       const pLo = entry.p;
       probA = selectedA.id === loId ? pLo : 1 - pLo;
       if (entry.s != null) {
-        // spread is from loId perspective; flip if selectedA is hiId
         spreadA = selectedA.id === loId ? entry.s : -entry.s;
       }
       total = entry.t ?? null;
