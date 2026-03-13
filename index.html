@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>March Madness 2026 Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=4" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏀</span>
+          <div>
+            <div class="logo-title">March Madness 2026</div>
+            <div class="logo-sub">AI Prediction Model</div>
+          </div>
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-tab="matchup">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            Matchup Predictor
+          </button>
+          <button class="tab" data-tab="bracket" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Full Bracket
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Tab: Matchup Predictor -->
+    <section class="tab-content active" id="tab-matchup">
+      <div class="matchup-hero">
+        <h1 class="hero-title">Who <span class="accent">Wins</span>?</h1>
+        <p class="hero-sub">Select any two teams to see the model's predicted outcome</p>
+      </div>
+
+      <div class="matchup-arena">
+        <!-- Team A -->
+        <div class="team-selector" id="selector-a">
+          <div class="selector-label">Team A</div>
+          <div class="search-wrap">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="team-search" type="text" placeholder="Search team…" id="search-a" autocomplete="off" />
+          </div>
+          <div class="dropdown" id="dropdown-a"></div>
+          <div class="selected-team" id="selected-a">
+            <div class="team-pill empty">No team selected</div>
+          </div>
+        </div>
+
+        <!-- VS / Result -->
+        <div class="vs-column">
+          <div class="vs-badge">VS</div>
+          <button class="swap-btn" id="swap-btn" title="Swap teams">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 16V4m0 0L3 8m4-4l4 4"/><path d="M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+          </button>
+        </div>
+
+        <!-- Team B -->
+        <div class="team-selector" id="selector-b">
+          <div class="selector-label">Team B</div>
+          <div class="search-wrap">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="team-search" type="text" placeholder="Search team…" id="search-b" autocomplete="off" />
+          </div>
+          <div class="dropdown" id="dropdown-b"></div>
+          <div class="selected-team" id="selected-b">
+            <div class="team-pill empty">No team selected</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="result-card" id="result-card">
+        <div class="result-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          <p>Select two teams above to see the prediction</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Tab: Full Bracket -->
+    <section class="tab-content" id="tab-bracket">
+      <div class="bracket-header">
+        <h1 class="hero-title">2026 <span class="accent">Predicted</span> Bracket</h1>
+        <p class="hero-sub">Model-simulated tournament — top 64 teams seeded by predicted strength</p>
+        <div class="champion-banner" id="champion-banner"></div>
+      </div>
+      <div class="bracket-scroll-hint">← Scroll to explore →</div>
+      <div class="bracket-outer">
+        <div class="bracket-wrapper" id="bracket-wrapper">
+          <div class="bracket-loading">Loading bracket…</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Inline data globals — no server required -->
+  <script src="assets/teams-data.js"></script>
+  <script src="assets/matchups-data.js"></script>
+  <script src="assets/bracket-data.js"></script>
+  <script src="app.js?v=3"></script>
+  <script src="bracket.js?v=3"></script>
+</body>
+</html>
