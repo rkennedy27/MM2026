@@ -59,14 +59,7 @@ function buildGameCard(game) {
   bar.appendChild(fill);
 
   const tooltip = el('div', 'b-game-tooltip');
-  let tipText = `${game.winner.name} · ${(prob * 100).toFixed(1)}%`;
-  if (game.spread != null) {
-    tipText += ` · Winner by ${Math.abs(game.spread).toFixed(1)}`;
-  }
-  if (game.total != null) {
-    tipText += ` · Total: ${game.total.toFixed(1)}`;
-  }
-  tooltip.textContent = tipText;
+  tooltip.textContent = `${game.winner.name} · ${(prob * 100).toFixed(1)}%`;
 
   card.append(
     row(ta, ta.id === wId),

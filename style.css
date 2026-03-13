@@ -34,14 +34,13 @@
   --font:        'Inter', system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -237,35 +236,6 @@ body {
   transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ─── Beta Box (spread & total inside orange panel) ─────────────────────── */
-.beta-box {
-  margin: 0; border-top: 1px solid var(--border);
-  background: var(--orange-pale);
-  padding: 16px 24px 20px;
-  text-align: center;
-}
-.beta-box-header {
-  font-size: 12px; line-height: 1.6; color: var(--text-dim);
-  margin-bottom: 14px;
-}
-.beta-box-header strong {
-  display: inline-block; padding: 1px 7px; margin-right: 4px;
-  background: var(--orange); color: white; border-radius: 4px;
-  font-size: 10px; letter-spacing: 1px; vertical-align: 1px;
-}
-.beta-box-values {
-  display: flex; justify-content: center; gap: 40px;
-}
-.beta-stat { text-align: center; }
-.beta-stat-label {
-  display: block; font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 4px;
-}
-.beta-stat-value {
-  font-size: 16px; font-weight: 700; color: var(--text);
-}
-
 /* ─── Bracket Page ───────────────────────────────────────────────────────── */
 .champion-banner {
   display: inline-flex; align-items: center; gap: 8px;
@@ -402,57 +372,7 @@ body {
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  /* Header */
-  .header-inner { flex-direction: column; height: auto; padding: 10px 16px; gap: 8px; }
-  .logo-title { font-size: 14px; }
-  .tabs { width: 100%; justify-content: center; }
-  .tab { flex: 1; justify-content: center; padding: 7px 10px; font-size: 12px; }
-
-  /* Hero */
-  .matchup-hero { padding: 32px 16px 24px; }
-  .hero-title { font-size: 42px; letter-spacing: -2px; }
-  .hero-sub { font-size: 14px; }
-
-  /* Matchup arena — stack vertically */
-  .matchup-arena {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 16px 24px;
-    gap: 0;
-  }
-  .team-selector { min-width: unset; max-width: unset; width: 100%; }
-
-  /* VS column — go horizontal between the two selectors */
-  .vs-column {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 0;
-    gap: 16px;
-  }
-
-  /* Result card */
-  .result-card { padding: 0 12px; margin-bottom: 48px; max-width: 100%; }
-  .result-filled { max-width: 100%; overflow: hidden; }
-
-  /* Stack the two teams on top of each other */
-  .result-teams { flex-direction: column; }
-  .result-divider { width: 100%; height: 1px; }
-  .result-team { padding: 20px 16px; }
-  .result-team-prob { font-size: 44px; letter-spacing: -2px; }
-  .result-team-name { font-size: 16px; }
-  .winner-badge { font-size: 10px; padding: 3px 10px; }
-
-  /* Bar labels — truncate long names */
-  .result-bar-wrap { padding: 0 16px 20px; }
-  .result-bar-labels span {
-    max-width: 45%; overflow: hidden;
-    text-overflow: ellipsis; white-space: nowrap;
-  }
-
-  /* Beta box */
-  .beta-box { padding: 14px 14px 18px; }
-  .beta-box-header { font-size: 11px; margin-bottom: 12px; }
-  .beta-box-values { flex-direction: column; gap: 12px; }
-  .beta-stat-value { font-size: 14px; word-break: break-word; }
+  .header-inner { flex-direction: column; height: auto; padding: 12px 16px; gap: 8px; }
+  .matchup-arena { gap: 10px; }
+  .team-selector { min-width: 240px; }
 }

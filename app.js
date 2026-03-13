@@ -147,20 +147,10 @@ function renderResult() {
   const key = `${loId}_${hiId}`;
   const entry = matchups[key];
 
-  // MATCHUPS_DATA: either {p, s, t} object or legacy plain float
-  let probA, spreadA = null, total = null;
+  // MATCHUPS_DATA is a slim key->pred float map
+  let probA;
   if (entry != null) {
-    if (typeof entry === 'object') {
-      const pLo = entry.p;
-      probA = selectedA.id === loId ? pLo : 1 - pLo;
-      if (entry.s != null) {
-        // spread is from loId perspective; flip if selectedA is hiId
-        spreadA = selectedA.id === loId ? entry.s : -entry.s;
-      }
-      total = entry.t ?? null;
-    } else {
-      probA = selectedA.id === loId ? entry : 1 - entry;
-    }
+    probA = selectedA.id === loId ? entry : 1 - entry;
   } else {
     probA = 0.5;
   }
@@ -196,24 +186,6 @@ function renderResult() {
           <div class="result-bar-fill" id="bar-fill" style="width: 0%"></div>
         </div>
       </div>
-      ${(spreadA != null || total != null) ? `
-      <div class="beta-box">
-        <div class="beta-box-header">
-          <strong>BETA</strong> &mdash; Spread &amp; Total predictions are <b>EXPERIMENTAL FEATURES</b> being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
-        </div>
-        <div class="beta-box-values">
-          ${spreadA != null ? `
-          <div class="beta-stat">
-            <span class="beta-stat-label">Predicted Spread</span>
-            <span class="beta-stat-value">${winnerIsA ? selectedA.name : selectedB.name} by ${Math.abs(spreadA).toFixed(1)}</span>
-          </div>` : ''}
-          ${total != null ? `
-          <div class="beta-stat">
-            <span class="beta-stat-label">Predicted Total</span>
-            <span class="beta-stat-value">${total.toFixed(1)}</span>
-          </div>` : ''}
-        </div>
-      </div>` : ''}
     </div>`;
 
   // Animate bar
