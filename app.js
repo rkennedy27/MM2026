@@ -147,12 +147,17 @@ function renderResult() {
   const key = `${loId}_${hiId}`;
   const entry = matchups[key];
 
-  // MATCHUPS_DATA is a slim key->pred float map
-  let probA;
-  if (entry != null) {
-    probA = selectedA.id === loId ? entry : 1 - entry;
+  // MATCHUPS_DATA is [prob, spread, total]
+  let probA, spreadA, total;
+  if (entry != null && Array.isArray(entry)) {
+    const [prob, spread, tot] = entry;
+    probA = (selectedA.id === loId) ? prob : (1 - prob);
+    spreadA = (selectedA.id === loId) ? spread : -spread;
+    total = tot;
   } else {
     probA = 0.5;
+    spreadA = 0;
+    total = 0;
   }
   const probB = 1 - probA;
 
@@ -177,6 +182,21 @@ function renderResult() {
           ${!winnerIsA ? '<div class="winner-badge">🏆 Predicted Winner</div>' : ''}
         </div>
       </div>
+
+      <div class="result-stats">
+        <div class="result-stat">
+          <div class="result-stat-label">Predicted Spread</div>
+          <div class="result-stat-value">${spreadA > 0 ? '+' : ''}${spreadA.toFixed(1)}</div>
+          <div class="result-stat-sub">${selectedA.name} ${spreadA <= 0 ? 'favored' : 'underdog'}</div>
+        </div>
+        <div class="result-stat-divider"></div>
+        <div class="result-stat">
+          <div class="result-stat-label">Predicted Total</div>
+          <div class="result-stat-value">${total.toFixed(1)}</div>
+          <div class="result-stat-sub">Over/Under</div>
+        </div>
+      </div>
+
       <div class="result-bar-wrap">
         <div class="result-bar-labels">
           <span>${selectedA.name}</span>
