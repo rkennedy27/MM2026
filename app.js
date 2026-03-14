@@ -147,17 +147,22 @@ function renderResult() {
   const key = `${loId}_${hiId}`;
   const entry = matchups[key];
 
-  // MATCHUPS_DATA is [prob, spread, total]
-  let probA, spreadA, total;
-  if (entry != null && Array.isArray(entry)) {
-    const [prob, spread, tot] = entry;
-    probA = (selectedA.id === loId) ? prob : (1 - prob);
-    spreadA = (selectedA.id === loId) ? spread : -spread;
-    total = tot;
+  // MATCHUPS_DATA: [pred, spread, total]
+  let probA, spreadA = null, total = null;
+  if (entry != null) {
+    if (Array.isArray(entry)) {
+      const pLo = entry[0];
+      probA = selectedA.id === loId ? pLo : 1 - pLo;
+      if (entry[1] != null) {
+        // spread is from loId perspective; flip if selectedA is hiId
+        spreadA = selectedA.id === loId ? entry[1] : -entry[1];
+      }
+      total = entry[2] ?? null;
+    } else {
+      probA = selectedA.id === loId ? entry : 1 - entry;
+    }
   } else {
     probA = 0.5;
-    spreadA = 0;
-    total = 0;
   }
   const probB = 1 - probA;
 
@@ -182,21 +187,6 @@ function renderResult() {
           ${!winnerIsA ? '<div class="winner-badge">🏆 Predicted Winner</div>' : ''}
         </div>
       </div>
-
-      <div class="result-stats">
-        <div class="result-stat">
-          <div class="result-stat-label">Predicted Spread</div>
-          <div class="result-stat-value">${spreadA > 0 ? '+' : ''}${spreadA.toFixed(1)}</div>
-          <div class="result-stat-sub">${selectedA.name} ${spreadA <= 0 ? 'favored' : 'underdog'}</div>
-        </div>
-        <div class="result-stat-divider"></div>
-        <div class="result-stat">
-          <div class="result-stat-label">Predicted Total</div>
-          <div class="result-stat-value">${total.toFixed(1)}</div>
-          <div class="result-stat-sub">Over/Under</div>
-        </div>
-      </div>
-
       <div class="result-bar-wrap">
         <div class="result-bar-labels">
           <span>${selectedA.name}</span>
@@ -206,6 +196,24 @@ function renderResult() {
           <div class="result-bar-fill" id="bar-fill" style="width: 0%"></div>
         </div>
       </div>
+      ${(spreadA != null || total != null) ? `
+      <div class="beta-box">
+        <div class="beta-box-header">
+          <strong>BETA</strong> &mdash; Spread &amp; Total predictions are <b>EXPERIMENTAL FEATURES</b> being tested for future MLB/NFL models. Treat these numbers as rough estimates, not final predictions.
+        </div>
+        <div class="beta-box-values">
+          ${spreadA != null ? `
+          <div class="beta-stat">
+            <span class="beta-stat-label">Predicted Spread</span>
+            <span class="beta-stat-value">${winnerIsA ? selectedA.name : selectedB.name} by ${Math.abs(spreadA).toFixed(1)}</span>
+          </div>` : ''}
+          ${total != null ? `
+          <div class="beta-stat">
+            <span class="beta-stat-label">Predicted Total</span>
+            <span class="beta-stat-value">${total.toFixed(1)}</span>
+          </div>` : ''}
+        </div>
+      </div>` : ''}
     </div>`;
 
   // Animate bar

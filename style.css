@@ -223,28 +223,37 @@ body {
 }
 .result-divider { width: 1px; background: var(--border); }
 
-/* ─── Result Stats ────────────────────────────────────────────────────────── */
-.result-stats {
-  display: flex; align-items: stretch;
-  background: var(--surface-2); border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.result-stat {
-  flex: 1; padding: 20px; text-align: center;
-}
-.result-stat-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px;
-}
-.result-stat-value {
-  font-size: 24px; font-weight: 800; color: var(--text); letter-spacing: -1px;
-}
-.result-stat-sub {
-  font-size: 10px; font-weight: 600; color: var(--text-faint); margin-top: 2px;
-}
-.result-stat-divider { width: 1px; background: var(--border); }
+.result-bar-wrap { padding: 0 28px 28px; }
 
-.result-bar-wrap { padding: 28px; }
+/* ─── Beta Box (spread & total inside orange panel) ────────────────────── */
+.beta-box {
+  margin: 0; border-top: 1px solid var(--border);
+  background: var(--orange-pale);
+  padding: 16px 24px 20px;
+  text-align: center;
+}
+.beta-box-header {
+  font-size: 12px; line-height: 1.6; color: var(--text-dim);
+  margin-bottom: 14px;
+}
+.beta-box-header strong {
+  display: inline-block; padding: 1px 7px; margin-right: 4px;
+  background: var(--orange); color: white; border-radius: 4px;
+  font-size: 10px; letter-spacing: 1px; vertical-align: 1px;
+}
+.beta-box-values {
+  display: flex; justify-content: center; gap: 40px;
+}
+.beta-stat { text-align: center; }
+.beta-stat-label {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 4px;
+}
+.beta-stat-value {
+  font-size: 16px; font-weight: 700; color: var(--text);
+}
+
 .result-bar-labels {
   display: flex; justify-content: space-between;
   font-size: 11px; font-weight: 600; color: var(--text-dim); margin-bottom: 6px;
@@ -396,4 +405,10 @@ body {
   .header-inner { flex-direction: column; height: auto; padding: 12px 16px; gap: 8px; }
   .matchup-arena { gap: 10px; }
   .team-selector { min-width: 240px; }
+
+  /* Beta box responsive */
+  .beta-box { padding: 14px 14px 18px; }
+  .beta-box-header { font-size: 11px; margin-bottom: 12px; }
+  .beta-box-values { flex-direction: column; gap: 12px; }
+  .beta-stat-value { font-size: 14px; word-break: break-word; }
 }
